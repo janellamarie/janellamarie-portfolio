@@ -29,10 +29,24 @@ const StyledButton = styled(Button)(({ theme }) => (
     borderRadius: 0,
     '&:hover': {
       backgroundColor: theme.palette.lighter_highlight,
+      color: theme.palette.lighter_highlight.red,
     },
     '&.Mui-active': {
       backgroundColor: theme.palette.lighter_highlight,
     }
+  }
+))
+
+const SkillButton = styled(Button)(({ theme }) => (
+  {
+    color: 'white',
+    paddingRight: '1em',
+    paddingLeft: '1em',
+    borderRadius: 20,
+    backgroundColor: theme.palette.brown,
+    pointerEvents: 'none',
+    textTransform: 'none',
+    width: '13em'
   }
 ))
 
@@ -54,7 +68,6 @@ function App() {
         </Grid>
       </ThemeProvider>
     </>
-   
   )
 }
 
@@ -74,6 +87,13 @@ function Navigation() {
       >
         <Grid item>
           <StyledButton fullWidth>
+              <Link to='/'>
+                Home
+              </Link>
+            </StyledButton>
+        </Grid>
+        <Grid item>
+          <StyledButton fullWidth>
             <Link to='/'>
               About Me
             </Link>
@@ -81,15 +101,15 @@ function Navigation() {
         </Grid>
         <Grid item>
           <StyledButton fullWidth>
-            <Link to='/experience'>
-              Experience
+            <Link to='/skills'>
+              Skills
             </Link>
           </StyledButton>
         </Grid>
         <Grid item>
           <StyledButton fullWidth>
-            <Link to='/skills'>
-              Skills
+            <Link to='/experience'>
+              Experience
             </Link>
           </StyledButton>
         </Grid>
@@ -168,11 +188,39 @@ function Contact() {
 function Skills() {
   return (
     <>
-      <Grid>
-        <p>My skills will go here!</p>
+      <Typography variant='h4'>Skills</Typography>
+      <Grid container sx={{width:'80em', height:'80em'}}>
+        <Grid item>
+          <Typography variant='h5'>
+            Languages
+          </Typography>
+          <Grid container 
+            spacing={1}
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            {createLanguagesButtons()}
+          </Grid>
+        </Grid>
       </Grid>
     </>
   )
+}
+
+function createLanguagesButtons() {
+  var languages = ['JavaScript', 'TypeScript', 'Java', 'Go', 'Ruby', 'HTML', 'Python', 'C++'] 
+  const buttons = []
+  for (const l of languages) {
+    buttons.push(
+      <Grid item>
+        <SkillButton fullWidth>
+          {l}
+        </SkillButton>
+      </Grid>
+    )
+  }
+  return (buttons)
 }
 
 function Experience() {
