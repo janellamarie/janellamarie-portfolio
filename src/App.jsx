@@ -1,8 +1,15 @@
 import './App.css'
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import { AppBar, Box, Button, Grid, Typography } from'@mui/material';
-import {  Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from '@mui/lab';
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from '@mui/lab';
 import { Routes, Route, Link } from "react-router-dom";
+import photo from './assets/20230218_170648 icon.jpg';
+
+// icons
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import EmailIcon from '@mui/icons-material/Email';
+import DownloadIcon from '@mui/icons-material/Download';
 
 const theme = createTheme({
   palette: {
@@ -11,18 +18,6 @@ const theme = createTheme({
     brown: '#735D55',
     highlight: '#DDDFE9',
     lighter_highlight: '#F5F7FF'
-  },
-  components: {
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          heading: 'h1',
-          subheading: 'h2',
-          short_text: 'h3',
-          body: 'span',
-        },
-      },
-    },
   },
 });
 
@@ -105,30 +100,69 @@ function Navigation() {
 
 function Home() {
   return(
-    <Box sx={{
-        paddingTop:'1em',
-        paddingBottom:'2em',
-        marginBottom:'2em'}}>
-      <Typography variant='heading'>
-        Hi there! 👋🏻
-      </Typography>
-      <Typography variant='subheading'>
-        {`I'm`} <Box component='span' fontWeight='fontWeightStrong'>Janella Co</Box>!
-      </Typography>
-      <Typography variant='short_text'>
-        A <Box component='span' fontWeight='fontWeightBold'>full-stack software engineer</Box> based in Lutz, FL. I am currently looking for <Box component='span' fontWeight='fontWeightStrong'>associate-level</Box> software engineering or web developer opportunities! 
-      </Typography>
-      <Typography variant='body'>
-        I am originally from the Philippines and moved to the United States in 2018. I studied at De La Salle Unviversity in 
-        Manila for a bit, before transferring to Hillsborough Community College (HCC) for my Associates degree.
-        After completing my Associates, I transferred to University of South Florida (USF) for my {`Bachelor's`} degree in Computer Science.
-        I graduated from USF in May 2020.         
-      </Typography>
-      <Typography variant='body'>
-        My first exposure to web development was in sixth grade–where we were taught HTML and CSS. Since then 
-      </Typography>
-    </Box>
+    <Grid container 
+      direction="row"
+      justifyContent="center"
+      alignItems="flex-star"
+      sx={{margin:"1em", paddingTop:"3em"}}
+    >
+      <Grid item xs={2} md={1.5}>
+        <img src={photo} style={{height: "10em", width: "10em"}} />
+      </Grid>
+      <Grid item xs={5}>
+        <Box>
+          <Typography variant='h4'>Hi there! 👋🏻</Typography>
+          <Typography variant='h3'>
+            {`I'm`} <Box component='span' fontWeight='fontWeightBold'>Janella Marie Co</Box>.
+          </Typography>
+          <Typography>
+            A <Box component='span' fontWeight='fontWeightBold'>full-stack software engineer</Box> based in Lutz, FL. I am currently looking for <Box component='span' fontWeight='fontWeightMedium'>associate-level</Box> software engineering or web developer opportunities! 
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item xs={6}>
+        <Contact />
+      </Grid>
+    </Grid>
   )
+}
+
+function Contact() {
+  return( 
+    <Grid container
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      sx={{paddingTop:"2em"}}
+      spacing={3}
+    >
+      <Grid item>
+        <Button>
+          <GitHubIcon sx={{paddingRight:"5px"}} />
+          GitHub
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button>
+          <LinkedInIcon sx={{paddingRight:"5px"}} />
+          LinkedIn
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button>
+          <EmailIcon  sx={{paddingRight:"5px"}}/>
+          Email
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button>
+          <DownloadIcon sx={{paddingRight:"5px"}} />
+          Resume
+        </Button>
+      </Grid>
+    </Grid>
+  )
+  
 }
 
 function Skills() {
